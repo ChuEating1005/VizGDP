@@ -1,4 +1,4 @@
-# dv
+# VizGDP
 
 ## Project setup
 ```
