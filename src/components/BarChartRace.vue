@@ -1,18 +1,12 @@
 <template>
-    <div class="flourish-embed flourish-bar-chart-race" data-src="visualisation/20144600">
-        <noscript>
-            <img src="https://public.flourish.studio/visualisation/20144600/thumbnail" width="100%" alt="bar-chart-race visualization" />
-        </noscript>
+    <div class="flex flex-col">
+        <h1 class="text-2xl font-bold text-center">Bar Chart Race</h1>
+        <GdpRace />
     </div>
 </template>
 
-<script>
-export default {
-    mounted() {
-        const script = document.createElement('script');
-        script.src = "https://public.flourish.studio/resources/embed.js";
-        script.async = true;
-        document.body.appendChild(script);
-    }
-}
+<script setup>
+import GdpRace from '@/components/BarChartRace/GdpRace.vue';
 </script>
+
+<style scoped></style>
