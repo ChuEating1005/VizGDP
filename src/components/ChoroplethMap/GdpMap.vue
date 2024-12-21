@@ -33,8 +33,8 @@
 
 <script>
 import * as d3 from "d3";
-import gdpdata from "@/assets/gdpdata.csv";
-import worlddata from "@/assets/worlddata.json";
+const gdpdata = "/data/gdpdata.csv";
+const worlddata = "/data/worlddata.json";
 export default {
   mounted() {
     const width = 1200, height = 600;
