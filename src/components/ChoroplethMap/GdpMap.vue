@@ -33,8 +33,6 @@
 
 <script>
 import * as d3 from "d3";
-const gdpdata = "/data/gdpdata.csv";
-const worlddata = "/data/worlddata.json";
 export default {
   mounted() {
     const width = 1200, height = 600;
@@ -137,8 +135,8 @@ export default {
 
     // Load data
     Promise.all([
-      d3.json(worlddata),
-      d3.csv(gdpdata, d => {
+      d3.json("assets/worlddata.json"),
+      d3.csv("assets/gdpdata.csv", d => {
         for (let year = 1960; year <= 2023; year++) {
           if (!gdpData.has(year)) gdpData.set(year, new Map());
           gdpData.get(year).set(d["Country Code"], +d[year]);
