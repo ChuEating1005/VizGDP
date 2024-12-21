@@ -8,11 +8,37 @@
 
 <script>
 export default {
+    data() {
+        return {
+            flourishScript: null
+        }
+    },
+    methods: {
+        loadFlourishEmbed() {
+            // 移除舊的 script 如果存在
+            if (this.flourishScript) {
+                this.flourishScript.remove();
+            }
+            
+            // 創建並加載新的 script
+            this.flourishScript = document.createElement('script');
+            this.flourishScript.src = "https://public.flourish.studio/resources/embed.js";
+            this.flourishScript.async = true;
+            document.body.appendChild(this.flourishScript);
+        }
+    },
     mounted() {
-        const script = document.createElement('script');
-        script.src = "https://public.flourish.studio/resources/embed.js";
-        script.async = true;
-        document.body.appendChild(script);
+        this.loadFlourishEmbed();
+    },
+    activated() {
+        // 當組件被 keep-alive 重新激活時調用
+        this.loadFlourishEmbed();
+    },
+    deactivated() {
+        // 當組件被 keep-alive 停用時調用
+        if (this.flourishScript) {
+            this.flourishScript.remove();
+        }
     }
 }
 </script>

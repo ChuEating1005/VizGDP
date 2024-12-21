@@ -7,7 +7,9 @@
       </ul>
     </nav>
     <div id="content">
-      <component :is="selectedComponent"/>
+      <keep-alive>
+        <component :is="selectedComponent"/>
+      </keep-alive>
     </div>
   </div>
 </template>
@@ -37,7 +39,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
 nav {
