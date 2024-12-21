@@ -1,9 +1,8 @@
 <template>
   <div>
-    <div id="scatterplot" style="width: 100%; height: 800px;"></div>
-    <div style="margin-top: -20px;">
-      <label><strong>Select Regions:</strong></label>
-      <div class="region-selector">
+      
+      <div class="region-selector flex">
+        <label><strong>Select Regions:</strong></label>
         <div v-for="region in availableRegions" :key="region" class="region-checkbox">
           <input
             type="checkbox"
@@ -11,10 +10,10 @@
             v-model="selectedRegions"
             @change="updateChart"
           />
-          <span>{{ region }}</span>
+          <span class="ml-1">{{ region }}</span>
         </div>
-      </div>
     </div>
+    <div id="scatterplot" style="width: 100%; height: 800px;"></div>
   </div>
 </template>
 
@@ -108,7 +107,7 @@ export default {
 
       chart.setOption({
         title: {
-          text: 'Scatterplot: Life Ladder vs Log GDP per Capita',
+          text: '',
           left: 'center',
           top: 'top',
           textStyle: {

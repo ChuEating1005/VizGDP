@@ -1,4 +1,21 @@
 <template>
+    <div class="flex items-center justify-center px-4 mt-10 mb-5">
+        <h1 class="text-4xl font-bold text-center ">Choropleth Map</h1>
+        <ChartInfo title="How to Use?" class="my-auto">
+            <li>
+                <strong>Highest/Lowest Selection:</strong><br>
+                You can choose to display either the top 10 highest values or the lowest values
+            </li>
+            <li>
+                <strong>Playback Control:</strong><br>
+                Use the play/pause button to control the animation. The timeline slider allows you to jump to specific points in time
+            </li>
+            <li>
+                <strong>Continent Filter:</strong><br>
+                Toggle different continents to filter the data and focus on specific regions
+            </li>
+        </ChartInfo>
+    </div>
     <div>
         <div class="selector mb-4">
             <label for="mapSelector" class="mr-2">Select Map:</label>
@@ -23,6 +40,7 @@ import Gdpmap from '@/components/ChoroplethMap/GdpMap.vue';
 import GNHMap from '@/components/ChoroplethMap/GNHMap.vue';
 import LifeMap from '@/components/ChoroplethMap/LifeMap.vue';
 import PopulationMap from '@/components/ChoroplethMap/PopulationMap.vue';
+import ChartInfo from '@/components/common/ChartInfo.vue';
 import { ref, computed } from 'vue';
 
 const selectedMap = ref('GDP');
