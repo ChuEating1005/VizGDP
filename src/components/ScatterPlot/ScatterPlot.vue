@@ -38,7 +38,7 @@ export default {
   methods: {
     async loadDataAndRenderChart() {
       try {
-        const response = await axios.get('assets/GNH_2023.csv');
+        const response = await axios.get('data/GNH_2023.csv');
         const csvData = response.data;
         const parsedData = this.parseCSV(csvData);
 

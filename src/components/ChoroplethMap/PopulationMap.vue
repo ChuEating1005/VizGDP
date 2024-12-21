@@ -17,7 +17,7 @@
         </select>
       </div>
       <button id="playButton">Play</button>
-      <input type="range" id="yearSlider" min="1960" max="2023" value="2010" step="1">
+      <input type="range" id="yearSlider" min="1960" max="2021" value="2010" step="1">
       <span id="yearLabel">2010</span>
     </div>
     
@@ -46,20 +46,20 @@ export default {
     const projection = d3.geoMercator().scale(150).translate([width / 2, height / 2]);
     const path = d3.geoPath().projection(projection);
 
-    // Color scale for GDP
+    // Color scale for Population
     const colorScale = d3.scaleThreshold()
-      .domain([-1, 0, 1000, 5000, 10000, 20000, 50000])
-      .range(["#cccccc", "#f2f2f2", "#d9f0a3", "#addd8e", "#78c679", "#41ab5d", "#238443", "#004529"]);
+      .domain([-1, 1, 1e5, 1e6, 1e7, 1e8, 1e9])
+    .range(["#cccccc", "#f7fbff", "#deebf7", "#c6dbef", "#9ecae1", "#6baed6", "#4292c6", "#084594"]);
 
     // Legend
     const legendLabels = [
-      ["No data", -1], 
-      ["$0", 0], 
-      ["$1,000", 1000], 
-      ["$5,000", 5000], 
-      ["$10,000", 10000], 
-      ["$20,000", 20000], 
-      ["$50,000+", 50000]
+      ["No data", -1],
+      ["< 100K", 1], 
+      ["100K - 1M", 1e5], 
+      ["1M - 10M", 1e6], 
+      ["10M - 100M", 1e7], 
+      ["100M - 500M", 1e8], 
+      ["500M+", 1e9], 
     ];
     const legend = d3.select("#legend");
     
@@ -80,7 +80,7 @@ export default {
           if (!isSelected) {
             d3.select(this).classed("selected", true);
             highlightRange(d[0] === "No data" ? d[0] : d[1]);
-          }
+        }
         });
 
       item.append("div")
@@ -98,7 +98,7 @@ export default {
           .style("border-left-color", colorScale(d[1]));
       }
 
-      // Add gap after "No data"
+      // Add gap after first item
       if (i === 0) {
         legendContainer.append("div")
           .attr("class", "legend-gap")
@@ -109,38 +109,39 @@ export default {
     function highlightRange(range) {
       svg.selectAll("path")
         .attr("class", d => {
-          const countryData = gdpData.get(+yearSlider.property("value")).get(d.id);
+          const countryData = populationData.get(+yearSlider.property("value")).get(d.id);
           if (range === "No data") {
-            return countryData === undefined || countryData === "" || countryData === 0 ? "country-highlight" : "country dimmed";
-          } else {
-            const [min, max] = getRangeBounds(range);
-            return countryData >= min && countryData < max ? "country-highlight" : "country dimmed";
-          }
+              return countryData === undefined || countryData === "" || countryData === 0 ? "country-highlight" : "country dimmed";
+            } else {
+              const [min, max] = getRangeBounds(range);
+              return countryData >= min && countryData < max ? "country-highlight" : "country dimmed";
+            }
         });
     }
 
     function getRangeBounds(range) {
       switch (range) {
-        case 0: return [1, 1000];
-        case 1000: return [1000, 5000];
-        case 5000: return [5000, 10000];
-        case 10000: return [10000, 20000];
-        case 20000: return [20000, 50000];
-        case 50000: return [50000, Infinity];
+        case -1: return [-Infinity, 0];
+        case 1: return [0, 1e5];
+        case 1e5: return [1e5, 1e6];
+        case 1e6: return [1e6, 1e7];
+        case 1e7: return [1e7, 1e8];
+        case 1e8: return [1e8, 5e8];
+        case 1e9: return [1e9, 1.5e9];
         default: return [-Infinity, Infinity];
       }
     }
 
     // Data storage
-    let worldData, gdpData = new Map();
+    let worldData, populationData = new Map();
 
     // Load data
     Promise.all([
       d3.json("data/worlddata.json"),
-      d3.csv("data/gdpdata.csv", d => {
-        for (let year = 1960; year <= 2023; year++) {
-          if (!gdpData.has(year)) gdpData.set(year, new Map());
-          gdpData.get(year).set(d["Country Code"], +d[year]);
+      d3.csv("data/world-population.csv", d => {
+        for (let year = 1960; year <= 2021; year++) {
+          if (!populationData.has(year)) populationData.set(year, new Map());
+          populationData.get(year).set(d["Country Code"], +d[year]);
         }
       })
     ]).then(data => {
@@ -189,7 +190,7 @@ export default {
         .join("path")
         .attr("d", path)
         .attr("fill", d => {
-          const countryData = gdpData.get(year).get(d.id);
+          const countryData = populationData.get(year).get(d.id);
           return countryData !== undefined && countryData !== "" && countryData !== 0 ? colorScale(countryData) : "#ccc";
         })
         .attr("class", "country")
@@ -199,7 +200,7 @@ export default {
           svg.selectAll("path").classed("dimmed", true);
           d3.select(this).classed("dimmed", false);
 
-          const countryData = gdpData.get(year).get(d.id);
+          const countryData = populationData.get(year).get(d.id);
           if (countryData !== undefined && countryData !== "" && countryData !== 0) {
             showTooltip(event, d, countryData);
           } else {
@@ -220,10 +221,10 @@ export default {
 
     // Show Tooltip with Chart
     function showTooltip(event, d, countryData) {
-      const years = Array.from(gdpData.keys()).filter(y => y >= 1960 && y <= 2023);
-      const values = years.map(y => gdpData.get(y).get(d.id) || 0);
+      const years = Array.from(populationData.keys()).filter(y => y >= 1960 && y <= 2021);
+      const values = years.map(y => populationData.get(y).get(d.id) || 0);
       const currentYear = +yearSlider.property("value");
-      const currentValue = gdpData.get(currentYear).get(d.id) || 0;
+      const currentValue = populationData.get(currentYear).get(d.id) || 0;
 
       tooltip.html(`
         <div class="tooltip-header">
@@ -231,7 +232,7 @@ export default {
           <div class="tooltip-year">Year: ${currentYear}</div>
         </div>
         <div class="tooltip-content">
-          <div class="tooltip-gdp">GDP per capita: $${Math.round(countryData).toLocaleString()}</div>
+          <div class="tooltip-population">Population: ${Math.round(countryData).toLocaleString()}</div>
           <svg class="tooltip-chart"></svg>
         </div>
       `);
@@ -241,7 +242,7 @@ export default {
       const chartHeight = 100 - margin.top - margin.bottom;
 
       const x = d3.scaleLinear()
-        .domain([1960, 2023])
+        .domain([1960, 2021])
         .range([0, chartWidth]);
 
       const y = d3.scaleLinear()
@@ -279,7 +280,7 @@ export default {
 
       chartSvg.append("g")
         .attr("class", "axis")
-        .call(d3.axisLeft(y).ticks(5).tickFormat(d => `$${d3.format("~s")(d)}`));
+        .call(d3.axisLeft(y).ticks(5).tickFormat(d => d3.format("~s")(d)));
 
       tooltip.style("opacity", 1)
         .style("left", (event.pageX + 10) + "px")
@@ -301,7 +302,7 @@ export default {
       } else {
         playInterval = setInterval(() => {
           let currentYear = +yearSlider.property("value");
-          if (currentYear < 2023) {
+          if (currentYear < 2021) {
             yearSlider.property("value", currentYear + 1).dispatch("input");
           } else {
             clearInterval(playInterval);
@@ -453,29 +454,29 @@ export default {
     stroke: #cbd5e0;
   }
   .tooltip-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 20px; /* Add padding for visual separation */
-      border-radius: 4px; /* Add border radius for rounded corners */
-      background-color: rgba(255, 255, 255, 0.8); /* Light background for contrast */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px; /* Add padding for visual separation */
+    border-radius: 4px; /* Add border radius for rounded corners */
+    background-color: rgba(255, 255, 255, 0.8); /* Light background for contrast */
   }
   .tooltip-title {
-      font-weight: bold;
-      font-size: 16px;
+    font-weight: bold;
+    font-size: 14px;
   }
   .tooltip-year {
-      font-size: 12px; /* Slightly smaller font size */
-      color: #555;
+    font-size: 12px; /* Slightly smaller font size */
+    color: #555;
   }
   .tooltip-content {
-      margin: 10px 0;
-      padding: 0 12px; /* Add padding for consistency */
+    margin: 10px 0;
+    padding: 0 12px; /* Add padding for consistency */
   }
-.tooltip-gdp {
-    font-size: 14px;
+  .tooltip-population {
+    font-size: 16px;
     color: #2c5282;
-}
+  }
   .country-highlight {
     stroke: #333;
     stroke-width: 1;
