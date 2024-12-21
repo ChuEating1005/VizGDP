@@ -37,13 +37,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
 nav {
   background-color: #2c3e50;
-  margin: 0cap;
-  padding: 10px;
+  padding: 1%;
 }
 
 nav ul {
@@ -60,5 +58,6 @@ nav ul li {
 
 nav ul li.active {
   font-weight: bold;
+  font-size: larger
 }
 </style>
