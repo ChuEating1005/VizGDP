@@ -1,16 +1,17 @@
 <template>
-    <div class="flourish-embed flourish-bar-chart-race" data-src="visualisation/20144600">
+    <div class="flourish-embed flourish-bar-chart-race" :data-src="`visualisation/${chartId}`">
         <noscript>
-            <img src="https://public.flourish.studio/visualisation/20144600/thumbnail" width="100%" alt="bar-chart-race visualization" />
+            <img :src="`https://public.flourish.studio/visualisation/${chartId}/thumbnail`" width="100%" alt="bar-chart-race visualization" />
         </noscript>
     </div>
 </template>
 
 <script>
 export default {
+    props: ['chartId'],
     data() {
         return {
-            flourishScript: null
+            flourishScript: null,
         }
     },
     methods: {
@@ -20,6 +21,11 @@ export default {
                 this.flourishScript.remove();
             }
             
+            // 移除舊的 Flourish 實例
+            if (window.FlourishLoaded) {
+                delete window.FlourishLoaded;
+            }
+            
             // 創建並加載新的 script
             this.flourishScript = document.createElement('script');
             this.flourishScript.src = "https://public.flourish.studio/resources/embed.js";
@@ -27,17 +33,25 @@ export default {
             document.body.appendChild(this.flourishScript);
         }
     },
+    watch: {
+        chartId: {
+            handler() {
+                this.$nextTick(() => {
+                    this.loadFlourishEmbed();
+                });
+            },
+            immediate: true
+        }
+    },
     mounted() {
         this.loadFlourishEmbed();
     },
-    activated() {
-        // 當組件被 keep-alive 重新激活時調用
-        this.loadFlourishEmbed();
-    },
-    deactivated() {
-        // 當組件被 keep-alive 停用時調用
+    beforeUnmount() {
         if (this.flourishScript) {
             this.flourishScript.remove();
+        }
+        if (window.FlourishLoaded) {
+            delete window.FlourishLoaded;
         }
     }
 }
