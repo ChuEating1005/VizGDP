@@ -453,27 +453,27 @@ export default {
     stroke: #cbd5e0;
   }
   .tooltip-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 12px; /* Add padding for visual separation */
-    border-radius: 4px; /* Add border radius for rounded corners */
-    background-color: rgba(255, 255, 255, 0.8); /* Light background for contrast */
-}
-.tooltip-title {
-    font-weight: bold;
-    font-size: 14px;
-}
-.tooltip-year {
-    font-size: 12px; /* Slightly smaller font size */
-    color: #555;
-}
-.tooltip-content {
-    margin: 10px 0;
-    padding: 0 12px; /* Add padding for consistency */
-}
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 20px; /* Add padding for visual separation */
+      border-radius: 4px; /* Add border radius for rounded corners */
+      background-color: rgba(255, 255, 255, 0.8); /* Light background for contrast */
+  }
+  .tooltip-title {
+      font-weight: bold;
+      font-size: 16px;
+  }
+  .tooltip-year {
+      font-size: 12px; /* Slightly smaller font size */
+      color: #555;
+  }
+  .tooltip-content {
+      margin: 10px 0;
+      padding: 0 12px; /* Add padding for consistency */
+  }
 .tooltip-gdp {
-    font-size: 16px;
+    font-size: 14px;
     color: #2c5282;
 }
   .country-highlight {

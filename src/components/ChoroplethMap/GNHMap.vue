@@ -228,10 +228,12 @@
         const currentValue = gnhData.get(currentYear).get(d.id) || 0;
   
         tooltip.html(`
-          <div class="tooltip-title">${d.properties.name}</div>
-          <div class="tooltip-content">
+          <div class="tooltip-header">
+            <div class="tooltip-title">${d.properties.name}</div>
             <div class="tooltip-year">Year: ${currentYear}</div>
-            <div class="tooltip-gnh">GNH: ${typeof countryData === 'number' ? countryData.toFixed(2).toLocaleString() : countryData}</div>
+          </div>
+          <div class="tooltip-content">
+            <div class="tooltip-gnh">GNH (ladder score): ${typeof countryData === 'number' ? countryData.toFixed(2).toLocaleString() : countryData}</div>
             <svg class="tooltip-chart"></svg>
           </div>
         `);
@@ -453,19 +455,28 @@
     .tooltip-chart .axis line {
       stroke: #cbd5e0;
     }
+    .tooltip-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 8px 12px; /* Add padding for visual separation */
+      border-radius: 4px; /* Add border radius for rounded corners */
+      background-color: rgba(255, 255, 255, 0.8);
+    }
     .tooltip-title {
-      font-weight: bold;
-      padding: 8px;
-      margin: -15px -15px 10px -15px;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
-      background-color: #f5f5f5;
-      border-bottom: 1px solid #ddd;
+        font-weight: bold;
+        font-size: 16px;
+    }
+    .tooltip-year {
+        font-size: 12px; /* Slightly smaller font size */
+        color: #555;
     }
     .tooltip-content {
-      margin: 10px 0;
+        margin: 10px 0;
+        padding: 0 12px; /* Add padding for consistency */
     }
-    .tooltip-gdp {
+    .tooltip-gnh {
       font-size: 16px;
       color: #2c5282;
       margin: 8px 0;

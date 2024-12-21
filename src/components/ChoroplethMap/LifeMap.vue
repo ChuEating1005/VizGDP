@@ -474,7 +474,7 @@
   }
   .tooltip-title {
       font-weight: bold;
-      font-size: 14px;
+      font-size: 16px;
   }
   .tooltip-year {
       font-size: 12px; /* Slightly smaller font size */
