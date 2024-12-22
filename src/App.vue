@@ -12,6 +12,7 @@
         />
       </keep-alive>
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -22,7 +23,7 @@ import BarChartRace from './components/BarChartRace.vue'
 import ChoroplethMap from './components/ChoroplethMap.vue'
 import ScatterPlot from './components/ScatterPlot.vue'
 import TimeLine from './components/TimeLine.vue'
-
+import Footer from './components/Footer.vue'
 export default {
   name: 'App',
   components: {
@@ -31,7 +32,8 @@ export default {
     BarChartRace,
     ChoroplethMap,
     ScatterPlot,
-    TimeLine
+    TimeLine,
+    Footer
   },
   data() {
     return {
