@@ -335,42 +335,87 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0% auto;
+    margin: 0 auto;
     position: absolute;
-    width: 50%;
-    bottom: 3%;
+    width: 60%;
+    bottom: 4%;
     left: 50%;
     transform: translateX(-50%);
-    gap: 1%; /* Add gap between elements */
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   }
+
   #yearSlider {
-    width: 50%;
+    width: 45%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(to right, #e8f5e9, #c8e6c9, #a5d6a7, #81c784, #66bb6a, #4caf50, #2e7d32);
+    outline: none;
+    cursor: pointer;
   }
+
+  #yearSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+  }
+
+  #yearSlider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    background: #45a049;
+  }
+
   #regionSelectorContainer {
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 50%;
-    gap: 1%;
+    gap: 10px;
   }
+
+  #regionSelectorContainer label {
+    font-weight: 500;
+    color: #333;
+  }
+
   #regionSelector {
-    font-size: 16px;
+    padding: 8px 12px;
+    font-size: 14px;
     border: 2px solid #4CAF50;
-    border-radius: 5px;
+    border-radius: 8px;
     background-color: white;
     color: #333;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   }
+
   #regionSelector:hover {
     border-color: #45a049;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
+
   #regionSelector:focus {
     outline: none;
     border-color: #2d662f;
-    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+  }
+
+  #yearLabel {
+    font-weight: 600;
+    color: #2d662f;
+    min-width: 45px;
+    text-align: center;
   }
   #legend {
     display: flex;
