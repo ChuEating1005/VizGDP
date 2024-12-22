@@ -1,5 +1,11 @@
 <template>
-    <div>
+    <div>      
+      <!-- Map -->
+      <svg id="map" width="1200" height="600"></svg>
+  
+      <!-- Legend -->
+      <div id="legend"></div>
+
       <!-- Controls -->
       <div id="controls">
         <div id="regionSelectorContainer">
@@ -20,12 +26,6 @@
         <input type="range" id="yearSlider" min="2005" max="2023" value="2010" step="1">
         <span id="yearLabel">2010</span>
       </div>
-      
-      <!-- Map -->
-      <svg id="map" width="100%" height="600"></svg>
-  
-      <!-- Legend -->
-      <div id="legend"></div>
   
       <!-- Tooltip -->
       <div id="tooltip" class="tooltip" style="opacity: 0;"></div>
@@ -178,7 +178,7 @@
   
         // Filter and adjust projection
         const bounds = regionBounds[currentRegion];
-        if (bounds) projection.fitExtent([[50, 50], [1150, 550]], { type: "Polygon", coordinates: [[
+        if (bounds) projection.fitExtent([[50, 50], [1200, 560]], { type: "Polygon", coordinates: [[
           [bounds[0][0], bounds[0][1]],
           [bounds[0][0], bounds[1][1]],
           [bounds[1][0], bounds[1][1]],
