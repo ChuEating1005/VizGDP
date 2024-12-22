@@ -4,10 +4,14 @@
       <ul>
         <li :class="{ active: selectedComponent === 'BarChartRace' }" @click="selectedComponent = 'BarChartRace'">Bar Chart Race</li>
         <li :class="{ active: selectedComponent === 'ChoroplethMap' }" @click="selectedComponent = 'ChoroplethMap'">Choropleth Map</li>
+        <li :class="{ active: selectedComponent === 'ScatterPlot' }" @click="selectedComponent = 'ScatterPlot'">Scatter Plot</li>
+        <li :class="{ active: selectedComponent === 'TimeLine' }" @click="selectedComponent = 'TimeLine'">Time Line</li>
       </ul>
     </nav>
     <div id="content">
-      <component :is="selectedComponent"/>
+      <keep-alive>
+        <component :is="selectedComponent"/>
+      </keep-alive>
     </div>
   </div>
 </template>
@@ -15,12 +19,16 @@
 <script>
 import BarChartRace from './components/BarChartRace.vue'
 import ChoroplethMap from './components/ChoroplethMap.vue';
+import ScatterPlot from './components/ScatterPlot.vue';
+import TimeLine from './components/TimeLine.vue';
 
 export default {
   name: 'App',
   components: {
     ChoroplethMap,
-    BarChartRace
+    BarChartRace,
+    ScatterPlot,
+    TimeLine
   },
   data() {
     return {
