@@ -5,16 +5,16 @@
             <h1 class="text-4xl font-bold text-center ">Bar Chart Race</h1>
             <ChartInfo title="How to Use?" class="my-auto">
                 <li>
-                    <strong>Highest/Lowest Selection:</strong><br>
-                    You can choose to display either the top 10 highest values or the lowest values
+                    <strong>Highest/Lowest Selection</strong>
+                    <div>You can choose to display either the top 10 highest values or the lowest values</div>
                 </li>
                 <li>
-                    <strong>Playback Control:</strong><br>
-                    Use the play/pause button to control the animation. The timeline slider allows you to jump to specific points in time
+                    <strong>Playback Control</strong>
+                    <div>Use the play/pause button to control the animation. The timeline slider allows you to jump to specific points in time</div>
                 </li>
                 <li>
-                    <strong>Continent Filter:</strong><br>
-                    Toggle different continents to filter the data and focus on specific regions
+                    <strong>Continent Filter</strong>
+                    <div>Toggle different continents to filter the data and focus on specific regions</div>
                 </li>
             </ChartInfo>
         </div>

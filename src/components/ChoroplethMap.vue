@@ -3,16 +3,20 @@
         <h1 class="text-4xl font-bold text-center ">Choropleth Map</h1>
         <ChartInfo title="How to Use?" class="my-auto">
             <li>
-                <strong>Highest/Lowest Selection:</strong><br>
-                You can choose to display either the top 10 highest values or the lowest values
+                <strong>Region Selection</strong>
+                <div>Use the dropdown menu to zoom into specific continents or view the entire world map</div>
             </li>
             <li>
-                <strong>Playback Control:</strong><br>
-                Use the play/pause button to control the animation. The timeline slider allows you to jump to specific points in time
+                <strong>Timeline Control</strong>
+                <div>Use the slider to view data from 1960 to 2023, or click the play button for automatic year progression</div>
             </li>
             <li>
-                <strong>Continent Filter:</strong><br>
-                Toggle different continents to filter the data and focus on specific regions
+                <strong>Interactive Legend</strong>
+                <div>Click on legend items to highlight countries within specific GDP ranges. Click again to reset</div>
+            </li>
+            <li>
+                <strong>Country Details</strong>
+                <div>Hover over countries to see detailed GDP information and historical trends in a popup tooltip</div>
             </li>
         </ChartInfo>
     </div>
