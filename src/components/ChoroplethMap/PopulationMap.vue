@@ -1,5 +1,12 @@
 <template>
   <div>
+    
+    <!-- Map -->
+    <svg id="map" width="100%" height="600"></svg>
+
+    <!-- Legend -->
+    <div id="legend"></div>
+
     <!-- Controls -->
     <div id="controls">
       <div id="regionSelectorContainer">
@@ -20,12 +27,6 @@
       <input type="range" id="yearSlider" min="1960" max="2021" value="2010" step="1">
       <span id="yearLabel">2010</span>
     </div>
-    
-    <!-- Map -->
-    <svg id="map" width="100%" height="600"></svg>
-
-    <!-- Legend -->
-    <div id="legend"></div>
 
     <!-- Tooltip -->
     <div id="tooltip" class="tooltip" style="opacity: 0;"></div>

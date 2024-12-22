@@ -330,6 +330,8 @@ export default {
   svg {
     display: block;
     margin: 0 auto;
+    margin-left: 50%;
+    transform: translateX(-50%);
   }
   #controls {
     display: flex;
