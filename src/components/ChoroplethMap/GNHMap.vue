@@ -22,7 +22,7 @@
       </div>
       
       <!-- Map -->
-      <svg id="map" width="100%" height="auto" viewBox="0 0 1200 560"></svg>
+      <svg id="map" width="100%" height="600"></svg>
   
       <!-- Legend -->
       <div id="legend"></div>

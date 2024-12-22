@@ -21,8 +21,8 @@
         <div class="selector mb-4">
             <label for="chartSelector" class="mr-2">Select Chart:</label>
             <select id="chartSelector" v-model="selectedChartId">
-                <option value="20144600">GDP</option>
-                <option value="20895787">GNH</option>
+                <option value="20144600">GDP per capita</option>
+                <option value="20895787">GNH per capita</option>
                 <option value="20897395">World Population</option>
                 <option value="20897358">Life Expectancy</option>
             </select>
