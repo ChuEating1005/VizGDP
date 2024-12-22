@@ -40,7 +40,7 @@
             </li>
             <li class="flex items-center gap-4">
               <span class="w-2 h-2 bg-cyan-400 rounded-full"></span>
-              GDP vs GNH Scatter Plot
+              GDP vs GNH and GDP vs Life Expectancy Scatter Plot
             </li>
             <li class="flex items-center gap-4">
               <span class="w-2 h-2 bg-cyan-400 rounded-full"></span>
