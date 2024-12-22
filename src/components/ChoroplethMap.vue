@@ -3,20 +3,20 @@
         <h1 class="text-4xl font-bold text-center ">Choropleth Map</h1>
         <ChartInfo title="How to Use?" class="my-auto">
             <li>
-                <strong>Region Selection:</strong><br>
-                Use the dropdown menu to zoom into specific continents or view the entire world map
+                <strong>Region Selection</strong>
+                <div>Use the dropdown menu to zoom into specific continents or view the entire world map</div>
             </li>
             <li>
-                <strong>Timeline Control:</strong><br>
-                Use the slider to view data from 1960 to 2023, or click the play button for automatic year progression
+                <strong>Timeline Control</strong>
+                <div>Use the slider to view data from 1960 to 2023, or click the play button for automatic year progression</div>
             </li>
             <li>
-                <strong>Interactive Legend:</strong><br>
-                Click on legend items to highlight countries within specific GDP ranges. Click again to reset
+                <strong>Interactive Legend</strong>
+                <div>Click on legend items to highlight countries within specific GDP ranges. Click again to reset</div>
             </li>
             <li>
-                <strong>Country Details:</strong><br>
-                Hover over countries to see detailed GDP information and historical trends in a popup tooltip
+                <strong>Country Details</strong>
+                <div>Hover over countries to see detailed GDP information and historical trends in a popup tooltip</div>
             </li>
         </ChartInfo>
     </div>
