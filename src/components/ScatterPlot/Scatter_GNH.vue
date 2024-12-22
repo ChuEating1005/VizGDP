@@ -157,7 +157,7 @@ export default {
       this.chart.setOption({
         backgroundColor: '#f8f9fa',
         animation: true,
-        animationDuration: 1200,
+        animationDuration: 500,
         animationEasing: 'quadraticInOut',
         animationThreshold: 2000,
         title: {
@@ -420,8 +420,8 @@ export default {
 
       this.chart.setOption({
         animation: true,
-        animationDuration: 1200,
-        animationDurationUpdate: 1200,
+        animationDuration: 500,
+        animationDurationUpdate: 500,
         animationEasing: 'quadraticInOut',
         animationEasingUpdate: 'quadraticInOut',
         animationThreshold: 2000,
