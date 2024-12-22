@@ -420,7 +420,7 @@ export default {
   #legend {
     display: flex;
     justify-content: center;
-    margin-bottom: .3%;
+    margin-bottom: 12%;
     position: relative;
     flex-wrap: nowrap; /* Ensure legends are on the same line */
     align-items: flex-start; /* Ensure all items align from the top */
