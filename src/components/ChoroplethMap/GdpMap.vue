@@ -1,5 +1,11 @@
 <template>
   <div>
+    <!-- Map -->
+    <svg id="map" width="1200" height="600"></svg>
+
+    <!-- Legend -->
+    <div id="legend" ></div>
+    
     <!-- Controls -->
     <div id="controls">
       <div id="regionSelectorContainer">
@@ -20,12 +26,6 @@
       <input type="range" id="yearSlider" min="1960" max="2023" value="2010" step="1">
       <span id="yearLabel">2010</span>
     </div>
-    
-    <!-- Map -->
-    <svg id="map" width="100%" height="600"></svg>
-
-    <!-- Legend -->
-    <div id="legend"></div>
 
     <!-- Tooltip -->
     <div id="tooltip" class="tooltip" style="opacity: 0;"></div>
@@ -176,7 +176,7 @@ export default {
 
       // Filter and adjust projection
       const bounds = regionBounds[currentRegion];
-      if (bounds) projection.fitExtent([[50, 50], [1150, 550]], { type: "Polygon", coordinates: [[
+      if (bounds) projection.fitExtent([[50, 50], [1200, 560]], { type: "Polygon", coordinates: [[
         [bounds[0][0], bounds[0][1]],
         [bounds[0][0], bounds[1][1]],
         [bounds[1][0], bounds[1][1]],
@@ -335,12 +335,9 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
-    position: absolute;
+    margin: 30px auto;
+    position: relative;
     width: 60%;
-    bottom: 4%;
-    left: 50%;
-    transform: translateX(-50%);
     gap: 20px;
     background: rgba(255, 255, 255, 0.95);
     padding: 15px 25px;
@@ -420,7 +417,7 @@ export default {
   #legend {
     display: flex;
     justify-content: center;
-    margin-bottom: 12%;
+    margin-bottom: 3%;
     position: relative;
     flex-wrap: nowrap; /* Ensure legends are on the same line */
     align-items: flex-start; /* Ensure all items align from the top */
